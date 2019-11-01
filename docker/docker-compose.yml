@@ -2,7 +2,7 @@ version: '3.5'
 services:
   nginx:
     build:
-      context: nginx
+      context: ./nginx
     ports:
       - "80:80"
     volumes:
@@ -10,6 +10,6 @@ services:
       
   ffmpeg:
     build:
-      context: ffmpeg
+      context: ./ffmpeg
     volumes:
       - ./capture:/capture
