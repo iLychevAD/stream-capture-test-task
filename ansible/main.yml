@@ -1,0 +1,7 @@
+---
+- hosts: all
+  tasks:
+  - name: Test
+    shell: /bin/echo "hello world"
+    register: echo_static
+  - debug: msg="{{echo_static.stdout}}"
