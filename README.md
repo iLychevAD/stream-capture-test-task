@@ -1,4 +1,4 @@
-Using Ansible+Docker, deploy a service that captures and provides via HTTP latest image from BigBuckBunny stream.
+Using Ansible+Docker, deploy a service that captures and provides via HTTP latest image from the BigBuckBunny stream.
 
 ### RUN
 from `ansible` directory run:
