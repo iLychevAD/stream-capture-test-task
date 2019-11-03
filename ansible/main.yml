@@ -2,7 +2,27 @@
 - hosts: all
   become: yes
   tasks:
-  - name: Test
-    shell: /bin/echo "hello world"
-    register: echo_static
-  - debug: msg="{{echo_static.stdout}}"
+  - name: Install Docker, docker-compose
+    apt:
+      name: "{{ item }}"
+      state: present
+    loop:
+      - docker.io
+      - docker-compose
+
+  - name: Checkout repo
+    git:
+      repo: "{{ repo }}"
+      dest: "{{ local_path }}"
+
+  - name: Build images
+    shell: |
+      docker-compose build --no-cache
+    args:
+      chdir: "{{ local_path }}/docker"
+
+  - name: Run containers
+    shell: |
+      docker-compose up -d --build
+    args:
+      chdir: "{{ local_path }}/docker"
